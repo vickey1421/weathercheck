@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const https = require("https");
 dotenv.config();
 const app = express();
-
+//good morning good etm
 app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
@@ -12,11 +12,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+const WeatherAPIkey=process.env.WeatherAPI
+
 app.post("/", (req, res) => {
   const location = req.body.cityName;
 
   const link =
-  "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=69b9a0415ffc6d2d60669a936ccd8aa0&units=metric";
+  "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid="+WeatherAPIkey+"units=metric";
   let weatherData;
   https.get(link, (response) => {
     response.on("data", (data) => {
